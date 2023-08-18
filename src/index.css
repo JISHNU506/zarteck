@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=seconge&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora&family=Roboto&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Lora', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
