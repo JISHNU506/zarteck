@@ -4,7 +4,7 @@ import Veg from "../assets/icons8-vegetarian-48.png"
 import { useCart } from './CartContext';
 
 const TabPanel = ({ value, index, selectedCategoryDishes }) => {
-    const { cartItems, addToCart, removeFromCart } = useCart(); 
+    const { cartItems, addToCart, removeFromCart } = useCart();
     return (
         <div
             className='w-full  items-center justify-center'
@@ -25,13 +25,27 @@ const TabPanel = ({ value, index, selectedCategoryDishes }) => {
                                     <span className='md:text-[14px] text-[8px] '>{dish?.dish_currency} &nbsp; {dish?.dish_price}</span>
                                     <p className='text-gray-500 pt-1 font-normal md:text-sm text-[8px] w-[95%] md:w-[90%]'>{dish?.dish_description}</p>
                                     {dish.dish_Availability ? (<div className='flex flex-row justify-start items-center pt-1'>
-                                        <button variant="contained" size="small" className='!rounded-l-2xl py-[1px] md:py-[2px] px-2 md:px-3 !bg-green-500 text-[12px] md:text-sm text-white' onClick={() => removeFromCart(dishIndex)}>
+                                        <button
+                                            variant="contained"
+                                            size="small"
+                                            className='!rounded-l-2xl py-[1px] md:py-[2px] px-2 md:px-3 !bg-green-500 text-[12px] md:text-sm text-white'
+                                            onClick={() => removeFromCart(dishIndex, value)}
+                                        >
                                             -
                                         </button>
-                                        <button variant="contained" size="small" className='!rounded-none py-[1px] md:py-[2px] px-2 md:px-3 !bg-green-500 text-[12px] md:text-sm text-white'>
-                                            {cartItems[dishIndex] || 0}
+                                        <button
+                                            variant="contained"
+                                            size="small"
+                                            className='!rounded-none py-[1px] md:py-[2px] px-2 md:px-3 !bg-green-500 text-[12px] md:text-sm text-white'
+                                        >
+                                            {cartItems[`${value}-${dishIndex}`] || 0}
                                         </button>
-                                        <button onClick={() => addToCart(dishIndex)} variant="contained" size="small" className='!rounded-r-2xl py-[1px] md:py-[2px] px-2 md:px-3 !bg-green-500 text-[12px] md:text-sm text-white'>
+                                        <button
+                                            onClick={() => addToCart(dishIndex, value)}
+                                            variant="contained"
+                                            size="small"
+                                            className='!rounded-r-2xl py-[1px] md:py-[2px] px-2 md:px-3 !bg-green-500 text-[12px] md:text-sm text-white'
+                                        >
                                             +
                                         </button>
 

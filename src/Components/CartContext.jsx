@@ -5,21 +5,22 @@ const CartContext = createContext();
 export function CartProvider({ children }) {
     const [cartItems, setCartItems] = useState({});
 
-    const addToCart = (dishIndex) => {
+    const addToCart = (dishIndex, tabIndex) => {
         setCartItems((prevItems) => ({
             ...prevItems,
-            [dishIndex]: (prevItems[dishIndex] || 0) + 1,
+            [`${tabIndex}-${dishIndex}`]: (prevItems[`${tabIndex}-${dishIndex}`] || 0) + 1,
         }));
     };
 
-    const removeFromCart = (dishIndex) => {
-        if (cartItems[dishIndex] > 0) {
+    const removeFromCart = (dishIndex, tabIndex) => {
+        if (cartItems[`${tabIndex}-${dishIndex}`] > 0) {
             setCartItems((prevItems) => ({
                 ...prevItems,
-                [dishIndex]: prevItems[dishIndex] - 1,
+                [`${tabIndex}-${dishIndex}`]: prevItems[`${tabIndex}-${dishIndex}`] - 1,
             }));
         }
     };
+    
 
     const getTotalQuantity = () => {
         return Object.values(cartItems).reduce((total, quantity) => total + quantity, 0);

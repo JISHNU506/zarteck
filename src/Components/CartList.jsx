@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Cartnav from './Cartnav';
 import axios from 'axios';
@@ -54,7 +53,7 @@ function CartList() {
 
                         ))
                     ) : (
-                        <Box sx={{ bgcolor: 'background.paper' }}>
+                        <div className='bg-white'>
 
                             <Tabs
                                 value={value}
@@ -64,29 +63,19 @@ function CartList() {
                                 indicatorColor="primary"
                                 scrollButtons={false}
                                 aria-label="scrollable prevent tabs example"
-                                TabIndicatorProps={{
-                                    style: { fontWeight: 700 },
-                                }}
-                                sx={{
-                                    '& .MuiTab-root': {
-                                        fontWeight: 700,
-                                        fontSize: "12px",
-                                        wordSpacing: '0.2rem',
-                                        letterSpacing: "0.5px",
-                                        width: 'auto',
-                                        minWidth: 0,
-                                        '@media (min-width: 768px)': {
-                                            width: '25%',
-                                            letterSpacing: "1px",
-                                            fontSize: "16px",
-                                        },
-                                    },
-                                }}
+                                className="bg-white "
                             >
 
                                 {apiResponse && apiResponse.length > 0 &&
                                     apiResponse[0].table_menu_list.map((category, index) => (
-                                        <Tab key={index} label={category.menu_category} />
+                                        <Tab
+                                            key={index}
+                                            label={category.menu_category}
+                                            className=" !font-bold text-xs md:text-base 
+                                            py-2 px-3 md:px-4 whitespace-nowrap  sm:px-2 sm:py-1 
+                                            sm:text- lg:px-4 lg:py-2
+                                            lg:whitespace-normal lg:truncate lg:w-1/4"
+                                        />
                                     ))}
                             </Tabs>
                             {apiResponse && apiResponse.length > 0 &&
@@ -96,10 +85,11 @@ function CartList() {
                                         value={value}
                                         index={index}
                                         selectedCategoryDishes={selectedCategoryDishes}
+                                        
                                     />
                                 ))}
 
-                        </Box>
+                        </div>
                     )}
 
                 </ThemeProvider>
